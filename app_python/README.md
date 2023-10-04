@@ -8,6 +8,7 @@
   </p>
 </p>
 
+![app_python](https://github.com/JustSomeDude2001/core-course-labs/actions/workflows/app_python.yml/badge.svg)
 
 ## Table of contents
 
@@ -16,6 +17,8 @@
 - [Quick start](#quick-start)
 - [Testing](#testing)
 - [Docker](#docker)
+- [Unit Tests](#unit-tests)
+- [CI Workflow](#ci-workflow)
 
 
 ## Description
@@ -54,13 +57,13 @@ Afterwards, the date and time can be seen on `127.0.0.1:5000`
 
 ## Testing
 
-After installing the application, go to the directory and run tests package using `pytest`
+After installing the application, go to the directory and run unit tests package using `pytest`
 
 ```
 python3 -m pytest
 ```
 
-Note that if your ping is higher than 2 minutes (which is highly unlikely) tests will always fail.
+Note that if your ping is higher than 2 minutes (which is highly unlikely) test for date and time will most likely fail.
 
 ## Docker
 
@@ -105,3 +108,27 @@ docker pull justsomedude22/app_python:<tag>
 ```
 
 If no tag provided, will pull latest
+
+## Unit Tests
+
+Within `tests` directory, packages for testing are contained. You can run them one by one as follows:
+
+```
+python3 -m pytest tests/test_testname.py
+```
+
+Where `test_testname.py` is the unit test module you chose to test.
+
+Alternatively, run all tests from `app_python` directory:
+
+```
+python3 -m pytest
+```
+
+## CI Workflow
+
+CI workflow consists of 3 stages:
+
+- `test_and_lint` - includes setting up the environment, running the linter, and then running unit tests. Note that tests will not be executed if linter sees fault.
+- `snyk` - runs security analysis using snyk. Happens in parallel to other steps.
+- `push_docker` - logins into docker hub using credentials from secrets, builds the image, and pushes it. It is required for `test_and_lint` to not fail, before it runs.
