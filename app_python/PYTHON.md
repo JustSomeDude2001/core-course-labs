@@ -17,8 +17,16 @@ For this web application we will use the following standards:
 
 ## Testing
 
-- [Official Flask Documentation](https://flask.palletsprojects.com/en/2.3.x/testing/) provides tutorial on how to test applications. Followed this to create a testing package.
+- [Official Flask Documentation](https://flask.palletsprojects.com/en/2.3.x/testing/) provides tutorial on how to test applications. Followed this to create testing packages.
+
+## Unit Tests
+
+There are 2 testing modules in `tests` directory for this application:
+
+- `test_code200` - simple test for if the service is even functional and returns status code 200.
+- `test_datetime` - test whether the time provided on the page is correct within a 2 minute margin.
 
 ## Linter
 
-- Used [PyLint](https://pypi.org/project/pylint/) as linter for the project.
+- Used [flake8](https://pypi.org/project/flake8/) as linter for the project.
+- Same linter is also used in CI
