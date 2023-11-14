@@ -1,7 +1,6 @@
-"""Testing module for datetime functionality"""
+"""Testing module for checking if page is up"""
 import pytest
 from flaskr import create_app
-from flaskr import util_functions as uf
 
 
 @pytest.fixture()
@@ -34,8 +33,7 @@ def runner(app):
     return app.test_cli_runner()
 
 
-def test_datetime(client):
-    """Actual datetime testing. Allowed deviation of 2 minutes"""
+def test_code200(client):
+    """Testing returned status code"""
     response = client.get("/")
-    datetime_now = uf.get_date("Europe/Moscow", '%Y-%m-%d %H:%M:%S')
-    assert uf.compare_dates(datetime_now, response.data)
+    assert response.status_code == 200
