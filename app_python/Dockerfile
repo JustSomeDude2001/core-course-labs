@@ -1,4 +1,4 @@
-FROM python:3.8-slim
+FROM python:3.13.2-slim
 
 # Updating and upgrading packages before work. Also auto-removing unncecessary packages.
 # Cleaning up the install lists afterwards.
